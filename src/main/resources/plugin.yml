@@ -5,7 +5,7 @@ api-version: '1.20'
 authors: [ AcidSenpai ]
 description: Mon premier plugins de test
 website: www.google.com
-commands:
-  givemoney:
-    description: Give 1000 to player
-    usage: /<command>
+permissions:
+  bmoscasino.create.casino:
+    description: Permet aux joueurs de créer un casino
+    default: op
