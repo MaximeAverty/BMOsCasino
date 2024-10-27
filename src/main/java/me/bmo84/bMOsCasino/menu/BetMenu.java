@@ -1,5 +1,7 @@
 package me.bmo84.bMOsCasino.menu;
 
+import me.bmo84.bMOsCasino.BMOsCasino;
+import me.bmo84.bMOsCasino.listeners.BetMenuListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,7 +15,7 @@ import java.util.List;
 
 public class BetMenu {
 
-    double bet = 500;
+    double bet = 500.0;
 
     public BetMenu(Player player, Material gameIcon, String gameName) {
 

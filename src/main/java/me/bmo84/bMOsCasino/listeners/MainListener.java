@@ -16,6 +16,7 @@ public class MainListener {
         pm.registerEvents(new CreateCasinoSIgn(), plugin);
         pm.registerEvents(new BreakSign(), plugin);
         pm.registerEvents(new ClickSign(), plugin);
+        pm.registerEvents(new BetMenuListener(), plugin);
     }
 
 }

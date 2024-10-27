@@ -18,6 +18,10 @@ public class ClickSign implements Listener {
     @EventHandler
     public void onClickCasinoSign(PlayerInteractEvent event) {
 
+        if(event.getClickedBlock() == null) {
+            return;
+        }
+
         if(!(Objects.requireNonNull(event.getClickedBlock()).getType().toString().endsWith("_SIGN"))) {
             return;
         }

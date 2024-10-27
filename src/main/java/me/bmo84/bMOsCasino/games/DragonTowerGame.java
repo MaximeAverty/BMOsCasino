@@ -12,8 +12,9 @@ public class DragonTowerGame extends CasinoGame{
     }
 
     @Override
-    public void onGameStart(Player player) {
-        player.sendMessage("Hello Dragon game");
+    public void startGame(Player player, double bet) {
+        player.closeInventory();
+        player.sendMessage("Game started");
     }
 
     @Override

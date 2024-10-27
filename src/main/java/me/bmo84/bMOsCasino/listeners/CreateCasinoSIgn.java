@@ -4,6 +4,7 @@ import me.bmo84.bMOsCasino.BMOsCasino;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -40,6 +41,8 @@ public class CreateCasinoSIgn implements Listener {
 
         event.setLine(0, "");
         event.setLine(1, "§b" + gameName);
+
+        player.playSound(player.getLocation(), Sound.ITEM_FIRECHARGE_USE, 40, 33);
 
         player.sendMessage(BMOsCasino.prefix + "§aCasino created successfully!");
 
