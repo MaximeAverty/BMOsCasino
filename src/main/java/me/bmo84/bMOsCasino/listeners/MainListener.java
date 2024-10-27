@@ -17,6 +17,7 @@ public class MainListener {
         pm.registerEvents(new BreakSign(), plugin);
         pm.registerEvents(new ClickSign(), plugin);
         pm.registerEvents(new BetMenuListener(), plugin);
+        pm.registerEvents(new DragonTowerListener(), plugin);
     }
 
 }

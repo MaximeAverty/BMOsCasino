@@ -28,6 +28,8 @@ public class BetMenuListener implements Listener {
         double bet;
         String gameName = Objects.requireNonNull(ChatColor.stripColor(event.getView().getItem(4).getItemMeta().getDisplayName()));
 
+        CasinoGame gameManager = BMOsCasino.getCasinoGames().get(gameName);
+
         try {
             bet = Double.parseDouble(event.getView().getTitle().split("§c")[1]);
         } catch (NumberFormatException err) {
@@ -42,17 +44,17 @@ public class BetMenuListener implements Listener {
         switch (Objects.requireNonNull(event.getCurrentItem()).getType()) {
             case RED_CONCRETE:
                 if(bet <= 500) {
-                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 30, 33);
+                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1f, 1f);
                     break;
                 }
                 bet-= 500;
                 event.getView().setTitle("§9Set your bet: " + "§c" + bet);
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 30, 33);
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1f, 1f);
                 break;
             case GREEN_CONCRETE:
                 bet+= 500;
                 event.getView().setTitle("§9Set your bet: " + "§c" + bet);
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 30, 33);
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1f, 1f);
                 break;
             case  NETHER_STAR:
                 CasinoGame game = BMOsCasino.getCasinoGames().get(gameName.toUpperCase());

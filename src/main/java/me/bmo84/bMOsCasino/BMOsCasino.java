@@ -24,7 +24,7 @@ public final class BMOsCasino extends JavaPlugin {
     private static Economy econ = null;
     private static BMOsCasino plugin;
 
-    public static String prefix = "§f[§9Bmo's Casino§f] ";
+    public static String prefix = "§f[§9§lBmo's Casino§f] ";
 
     private static final Map<String, String> signsMap = new HashMap<String, String>();
     private static final Map<Player, Double> playersBet = new HashMap<Player, Double>();
@@ -47,9 +47,11 @@ public final class BMOsCasino extends JavaPlugin {
 
         plugin = this;
 
-        MainListener.registerListener();
 
+        // TODO Save games before listeners
         casinoGames.put("DRAGON TOWER", new DragonTowerManager("DRAGON TOWER", "empty", Material.DRAGON_HEAD));
+
+        MainListener.registerListener();
 
     }
 
