@@ -16,10 +16,8 @@ public abstract class CasinoGame {
         this.gameIcon = gameIcon;
     }
 
-    public abstract void startGame(Player player, double bet);
+    public abstract void startGame(Player player);
 
     public abstract void openBetMenu(Player player);
-
-
 
 }

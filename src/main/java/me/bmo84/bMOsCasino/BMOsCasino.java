@@ -1,21 +1,20 @@
 package me.bmo84.bMOsCasino;
 
 import me.bmo84.bMOsCasino.games.CasinoGame;
-import me.bmo84.bMOsCasino.games.DragonTowerGame;
-import me.bmo84.bMOsCasino.listeners.CreateCasinoSIgn;
 import me.bmo84.bMOsCasino.listeners.MainListener;
+import me.bmo84.bMOsCasino.managers.DragonTowerManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
+
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.Sign;
-import org.bukkit.configuration.file.FileConfiguration;
+
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Arrays;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -28,7 +27,9 @@ public final class BMOsCasino extends JavaPlugin {
     public static String prefix = "§f[§9Bmo's Casino§f] ";
 
     private static final Map<String, String> signsMap = new HashMap<String, String>();
-    private static final Map<String, CasinoGame> casinoGames = new HashMap<String, CasinoGame>();
+    private static final Map<Player, Double> playersBet = new HashMap<Player, Double>();
+    private static final Map<String, CasinoGame> casinoGames = new HashMap<>();
+
 
     @Override
     public void onEnable() {
@@ -47,7 +48,8 @@ public final class BMOsCasino extends JavaPlugin {
         plugin = this;
 
         MainListener.registerListener();
-        casinoGames.put("DRAGON TOWER", new DragonTowerGame("Dragon Tower", "empty", Material.DRAGON_HEAD));
+
+        casinoGames.put("DRAGON TOWER", new DragonTowerManager("DRAGON TOWER", "empty", Material.DRAGON_HEAD));
 
     }
 
@@ -85,6 +87,14 @@ public final class BMOsCasino extends JavaPlugin {
 
     public static Map<String, CasinoGame> getCasinoGames() {
         return casinoGames;
+    }
+
+    public static Map<Player, Double> getPlayersBet() {
+        return playersBet;
+    }
+
+    public static void addPlayerBet(Player player, Double bet) {
+        getPlayersBet().put(player, bet);
     }
 
     public static void addSign(Block sign, String gameName) {

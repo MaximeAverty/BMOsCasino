@@ -1,24 +1,20 @@
 package me.bmo84.bMOsCasino.games;
 
 import me.bmo84.bMOsCasino.BMOsCasino;
-import me.bmo84.bMOsCasino.menu.BetMenu;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-public class DragonTowerGame extends CasinoGame{
+public class DragonTowerGame {
 
-    public DragonTowerGame(String name, String description, Material gameIcon) {
-        super(name, description, gameIcon);
+    private int currentRow = 1;
+
+    private Player player;
+    private double playerBet;
+
+    public DragonTowerGame(Player player) {
+        this.player = player;
+        this.playerBet = BMOsCasino.getPlayersBet().get(player);
     }
 
-    @Override
-    public void startGame(Player player, double bet) {
-        player.closeInventory();
-        player.sendMessage("Game started");
-    }
+    // Logique et autre fonction pour les calcule etc...
 
-    @Override
-    public void openBetMenu(Player player) {
-        new BetMenu(player, gameIcon, name);
-    }
 }

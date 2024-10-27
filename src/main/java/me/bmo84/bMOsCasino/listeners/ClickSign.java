@@ -5,6 +5,7 @@ import me.bmo84.bMOsCasino.games.CasinoGame;
 import org.bukkit.Location;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -47,9 +48,7 @@ public class ClickSign implements Listener {
 
             CasinoGame game = BMOsCasino.getCasinoGames().get(gameName);
 
-            if(game != null) {
-                game.openBetMenu(event.getPlayer());
-            }
+            game.openBetMenu(event.getPlayer());
 
         }
 

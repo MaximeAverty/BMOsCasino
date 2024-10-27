@@ -1,7 +1,9 @@
 package me.bmo84.bMOsCasino.listeners;
 
-import me.bmo84.bMOsCasino.games.DragonTowerGame;
+import me.bmo84.bMOsCasino.BMOsCasino;
+import me.bmo84.bMOsCasino.games.CasinoGame;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,6 +26,7 @@ public class BetMenuListener implements Listener {
 
         Player player = ( Player) event.getWhoClicked();
         double bet;
+        String gameName = Objects.requireNonNull(ChatColor.stripColor(event.getView().getItem(4).getItemMeta().getDisplayName()));
 
         try {
             bet = Double.parseDouble(event.getView().getTitle().split("§c")[1]);
@@ -45,15 +48,16 @@ public class BetMenuListener implements Listener {
                 bet-= 500;
                 event.getView().setTitle("§9Set your bet: " + "§c" + bet);
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 30, 33);
-                player.sendMessage(String.valueOf(bet));
                 break;
-
             case GREEN_CONCRETE:
                 bet+= 500;
                 event.getView().setTitle("§9Set your bet: " + "§c" + bet);
                 player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 30, 33);
                 break;
             case  NETHER_STAR:
+                CasinoGame game = BMOsCasino.getCasinoGames().get(gameName.toUpperCase());
+                BMOsCasino.addPlayerBet(player, bet);
+                game.startGame(player);
                 break;
         }
 
