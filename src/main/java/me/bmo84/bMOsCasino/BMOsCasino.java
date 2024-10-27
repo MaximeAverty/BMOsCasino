@@ -3,9 +3,11 @@ package me.bmo84.bMOsCasino;
 import me.bmo84.bMOsCasino.games.CasinoGame;
 import me.bmo84.bMOsCasino.games.DragonTowerGame;
 import me.bmo84.bMOsCasino.listeners.CreateCasinoSIgn;
+import me.bmo84.bMOsCasino.listeners.MainListener;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -16,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public final class BMOsCasino extends JavaPlugin {
 
@@ -43,9 +46,8 @@ public final class BMOsCasino extends JavaPlugin {
 
         plugin = this;
 
-        Bukkit.getServer().getPluginManager().registerEvents(new CreateCasinoSIgn(), this);
-
-        casinoGames.put("DRAGON TOWER", new DragonTowerGame("Dragon Tower", "empty"));
+        MainListener.registerListener();
+        casinoGames.put("DRAGON TOWER", new DragonTowerGame("Dragon Tower", "empty", Material.DRAGON_HEAD));
 
     }
 
@@ -88,7 +90,7 @@ public final class BMOsCasino extends JavaPlugin {
     public static void addSign(Block sign, String gameName) {
 
         String signKey = sign.getWorld().getName() + "/" + sign.getX() + "/" + sign.getY() + "/" + sign.getZ();
-        plugin.getConfig().set(signKey, gameName);
+        Objects.requireNonNull(plugin.getConfig().getConfigurationSection("casinoSigns")).set(signKey, gameName);
         plugin.saveConfig();
 
     }

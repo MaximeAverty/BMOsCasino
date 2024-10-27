@@ -3,6 +3,7 @@ package me.bmo84.bMOsCasino.listeners;
 import me.bmo84.bMOsCasino.BMOsCasino;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,6 +24,7 @@ public class CreateCasinoSIgn implements Listener {
             return;
         }
 
+
         if(!(Objects.equals(event.getLine(0), "[CASINO]"))) {
             return;
         }
@@ -30,16 +32,16 @@ public class CreateCasinoSIgn implements Listener {
         String gameName = event.getLine(1);
 
         if(!(BMOsCasino.getCasinoGames().containsKey(gameName))) {
-            player.sendMessage(BMOsCasino.prefix + "The game §e" + gameName +" §f does not exist");
+            player.sendMessage(BMOsCasino.prefix + "The game §e" + gameName +" §fdoes not exist");
             return;
         }
 
         BMOsCasino.addSign(event.getBlock(), gameName);
 
         event.setLine(0, "");
-        event.setLine(1, "§bDRAGON TOWER");
+        event.setLine(1, "§b" + gameName);
 
-        player.sendMessage(BMOsCasino.prefix + "Casino créé avec succés !");
+        player.sendMessage(BMOsCasino.prefix + "§aCasino created successfully!");
 
     }
 
